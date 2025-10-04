@@ -361,22 +361,18 @@
             padding: 0 var(--space-4);
         }
 
-        /* Professional Floating Navigation */
+        /* Top Navigation */
         .header {
-            position: fixed;
-            top: var(--space-4);
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
+            width: 100%;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-2xl);
-            padding: var(--space-4) var(--space-6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-4) 0;
+            margin-bottom: var(--space-6);
             transition: all 0.3s ease;
-            width: auto;
-            max-width: calc(100vw - 2rem);
         }
 
         .header-content {
@@ -439,12 +435,10 @@
             transform: translateY(-1px);
         }
 
-        /* Responsive floating nav */
+        /* Responsive nav */
         @media (max-width: 768px) {
             .header {
-                top: var(--space-2);
-                padding: var(--space-3) var(--space-4);
-                max-width: calc(100vw - 1rem);
+                padding: var(--space-3) 0;
             }
 
             .header-content {
@@ -1353,13 +1347,51 @@
 
         <!-- Main Content Grid -->
         <div class="main-grid">
+            <!-- URL Shortener -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <div class="card-icon">🔗</div>
+                    <h2 class="card-title">URL Shortener</h2>
+                </div>
+
+                <p style="color: var(--gray-600); margin-bottom: var(--space-6); font-size: 0.9rem;">
+                    Create short URLs using SnapIT URL service and generate QR codes for them instantly.
+                </p>
+
+                <div class="form-group">
+                    <label for="urlToShorten" class="form-label">Long URL</label>
+                    <input type="url" id="urlToShorten" class="form-input" placeholder="https://example.com/very-long-url">
+                </div>
+
+                <div class="form-group">
+                    <label for="customAlias" class="form-label">Custom Alias (Optional)</label>
+                    <input type="text" id="customAlias" class="form-input" placeholder="my-custom-link">
+                    <small style="color: var(--gray-500); font-size: 0.875rem;">Leave empty for auto-generated code (letters, numbers, hyphens only)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="domainSelect" class="form-label">Domain</label>
+                    <select id="domainSelect" class="form-input" style="background-color: white;">
+                        <option value="snapiturl.com" selected>snapiturl.com</option>
+                        <option value="snapitqr.com">snapitqr.com</option>
+                    </select>
+                    <small style="color: var(--gray-500); font-size: 0.875rem;">Choose your preferred domain for the short URL</small>
+                </div>
+
+                <button id="shortenBtn" class="btn btn-primary btn-full btn-lg" onclick="shortenURL()">
+                    <span>🚀 Create Short URL</span>
+                </button>
+
+                <div id="urlResults"></div>
+            </div>
+
             <!-- QR Code Generator -->
             <div class="glass-card">
                 <div class="card-header">
                     <div class="card-icon">🎯</div>
                     <h2 class="card-title">QR Code Generator</h2>
                 </div>
-                
+
                 <!-- Quick Templates -->
                 <div class="form-group">
                     <label class="form-label">Quick Templates</label>
@@ -1371,12 +1403,12 @@
                         <button class="template-btn" onclick="loadTemplate('text')">📝 Text</button>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="qrContent" class="form-label">Content</label>
                     <textarea id="qrContent" class="form-textarea" placeholder="Enter URL, text, or any content..." rows="3" oninput="generateQRCode()"></textarea>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Colors</label>
                     <div class="color-controls">
@@ -1390,7 +1422,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="qrSize" class="form-label">Size</label>
                     <select id="qrSize" class="form-select" onchange="generateQRCode()">
@@ -1400,58 +1432,20 @@
                         <option value="500">Extra Large (500×500)</option>
                     </select>
                 </div>
-                
+
                 <button id="generateBtn" class="btn btn-primary btn-full btn-lg" onclick="generateQRCode()">
                     <span>✨ Generate QR Code</span>
                 </button>
-                
+
                 <div id="qrPreview" class="qr-preview">
                     <div class="qr-placeholder">QR code will appear here</div>
                 </div>
-                
+
                 <div id="qrActions" class="qr-actions">
                     <button id="downloadBtn" class="btn btn-secondary" onclick="downloadQRCode()" disabled>💾 Download</button>
                     <button id="saveBtn" class="btn btn-success" onclick="saveQRCode()" disabled>💾 Save</button>
                     <button id="shareBtn" class="btn btn-secondary" onclick="shareQRCode()" disabled>📤 Share</button>
                 </div>
-            </div>
-            
-            <!-- URL Shortener Integration -->
-            <div class="glass-card">
-                <div class="card-header">
-                    <div class="card-icon">🔗</div>
-                    <h2 class="card-title">URL Shortener</h2>
-                </div>
-                
-                <p style="color: var(--gray-600); margin-bottom: var(--space-6); font-size: 0.9rem;">
-                    Create short URLs using SnapIT URL service and generate QR codes for them instantly.
-                </p>
-                
-                <div class="form-group">
-                    <label for="urlToShorten" class="form-label">Long URL</label>
-                    <input type="url" id="urlToShorten" class="form-input" placeholder="https://example.com/very-long-url">
-                </div>
-                
-                <div class="form-group">
-                    <label for="customAlias" class="form-label">Custom Alias (Optional)</label>
-                    <input type="text" id="customAlias" class="form-input" placeholder="my-custom-link">
-                    <small style="color: var(--gray-500); font-size: 0.875rem;">Leave empty for auto-generated code (letters, numbers, hyphens only)</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="domainSelect" class="form-label">Domain</label>
-                    <select id="domainSelect" class="form-input" style="background-color: white;">
-                        <option value="snapiturl.com" selected>snapiturl.com</option>
-                        <option value="snapitqr.com">snapitqr.com</option>
-                    </select>
-                    <small style="color: var(--gray-500); font-size: 0.875rem;">Choose your preferred domain for the short URL</small>
-                </div>
-                
-                <button id="shortenBtn" class="btn btn-primary btn-full btn-lg" onclick="shortenURL()">
-                    <span>🚀 Create Short URL</span>
-                </button>
-                
-                <div id="urlResults"></div>
             </div>
         </div>
 
@@ -1596,10 +1590,10 @@
 
         // Initialize app
         window.onload = function() {
-            console.log('SnapIT QR initializing...');
+            console.log('SnapIT URL initializing...');
             checkExistingSession();
             initGoogleAuth();
-            console.log('SnapIT QR initialized');
+            console.log('SnapIT URL initialized');
         };
 
         // Initialize Google Authentication with shared client ID
@@ -1645,15 +1639,14 @@
             try {
                 showToast('Authenticating...', 'info');
 
-                // Use unified authentication backend
-                const authResponse = await fetch('https://api.snapitforms.com/auth/google', {
+                // Use SnapIT URL authentication
+                const authResponse = await fetch('https://api.snapiturl.com/auth/google', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        credential: response.credential,
-                        source: 'snapitqr'
+                        googleToken: response.credential
                     })
                 });
 
@@ -1744,7 +1737,7 @@
                 try {
                     const user = JSON.parse(userData);
                     updateAuthUI(user);
-                    console.log('Restored local QR session');
+                    console.log('Restored local URL session');
                 } catch (error) {
                     console.error('Failed to restore local session:', error);
                     localStorage.removeItem('snapitqr_user');
@@ -2115,7 +2108,22 @@
             const btn = document.getElementById('shortenBtn');
             btn.classList.add('loading');
 
+            // Check authentication first
+            if (!currentUser) {
+                showToast('Please sign in to create short URLs', 'error');
+                btn.classList.remove('loading');
+                return;
+            }
+
             try {
+                const authToken = localStorage.getItem('accessKey') || localStorage.getItem('snapitqr_token');
+
+                if (!authToken) {
+                    showToast('Please sign in to create short URLs', 'error');
+                    btn.classList.remove('loading');
+                    return;
+                }
+
                 const requestData = {
                     url: url,
                     domain: selectedDomain,
@@ -2133,12 +2141,15 @@
                 // Use our deployed API endpoint
                 let response;
                 try {
-                    // Update request data to match our API
-                    // Note: Backend doesn't support customAlias yet
+                    // Update request data to match our API with authenticated user
                     const apiRequestData = {
                         url: url,
-                        userId: 'anonymous' // Could be updated when user is authenticated
+                        userId: currentUser.id || currentUser.sub || currentUser.email
                     };
+
+                    if (customAlias) {
+                        apiRequestData.customCode = customAlias;
+                    }
                     
                     // Use appropriate API based on selected domain
                     const apiEndpoint = selectedDomain === 'snapiturl.com'
@@ -2149,22 +2160,13 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
                         },
                         body: JSON.stringify(apiRequestData)
                     });
-                } catch (corsError) {
-                    // Fallback: Generate a mock short URL and create QR code
-                    const shortCode = customAlias || Math.random().toString(36).substring(2, 8);
-                    const mockResult = {
-                        success: true,
-                        shortUrl: `https://${selectedDomain}/${shortCode}`,
-                        shortCode: shortCode,
-                        originalUrl: url
-                    };
-                    
-                    displayURLResult(mockResult);
-                    showToast('Short URL created! (Note: This is a demo - full functionality requires backend setup)', 'success');
-                    return;
+                } catch (fetchError) {
+                    console.error('API fetch error:', fetchError);
+                    throw new Error('Failed to connect to API. Please try again.');
                 }
 
                 const result = await response.json();
