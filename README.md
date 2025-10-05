@@ -1,118 +1,102 @@
-# SnapIT URL - Smart URL Shortening Service
+# SnapIT URL - Professional URL Shortener
 
-Professional URL shortening with powerful analytics, custom domains, and integrated QR code generation.
+Short links with analytics, branding, and link management for businesses and individuals.
 
-## 🌟 Features
+## 🚀 Live Production
 
-### Core URL Shortening
-- **Smart Analytics**: Detailed click tracking, geographic insights, device breakdown
-- **Custom Domains**: Choose between snapiturl.com and snapitqr.com
-- **QR Integration**: Automatic QR code generation for every short URL
-- **Real-time Tracking**: Live click monitoring and campaign optimization
+**Website:** https://snapiturl.com
+**API:** https://api.snapiturl.com
+**CDN:** CloudFront + S3
 
-### User Experience
-- **Clean Interface**: URL-focused design and copywriting
-- **Free Tier**: 3 short URLs + 1 dynamic QR code to get started
-- **Cross-Platform**: Shared accounts with SnapIT QR ecosystem
-- **Professional Analytics**: Business-grade tracking and insights
+## 📦 Branch Strategy
 
-### Enterprise Features
-- **Custom Branding**: Branded short links for business use
-- **API Access**: Programmatic URL shortening integration
-- **Advanced Analytics**: Detailed reporting and export capabilities
-- **Priority Support**: Enterprise-grade customer service
+### `main` - Development Branch
+- Active development and new features
+- Test changes here before production
+- May contain experimental code
 
-## 🚀 Quick Start
+### `production` - Production Branch
+- **Deploy ONLY from this branch**
+- Stable, tested code currently live on snapiturl.com
+- Tagged releases (e.g., `v1.0.0-production`)
 
-1. **Visit**: [snapiturl.com](https://snapiturl.com)
-2. **Sign In**: Use Google OAuth for instant access
-3. **Shorten**: Paste your URL and get professional short links
-4. **Track**: Monitor clicks and optimize your campaigns
+## 🏷️ Current Production Version
 
-## 🔗 Integration
+**v1.0.0-production** - 6-Tier Pricing with Bug Fixes
 
-### Cross-Platform Benefits
-- **SnapIT QR**: Generate QR codes for your URLs
-- **Shared Billing**: One subscription covers all SnapIT products
-- **Unified Dashboard**: Manage everything from one account
+**Features:**
+- 6-tier unified pricing (FREE to Enterprise)
+- Monthly/yearly billing (20% annual discount)
+- Fixed authentication (no CORS errors)
+- Sticky top navigation
+- Stripe integration (test mode)
 
-### API Integration
-```javascript
-// Example API usage
-const response = await fetch('https://api.snapiturl.com/shorten', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        url: 'https://your-long-url.com',
-        userId: 'your-user-id'
-    })
-});
+## 💰 Pricing Tiers
+
+| Tier | Monthly | Yearly | Features |
+|------|---------|--------|----------|
+| FREE | $0 | $0 | 50 Short URLs, 20 Dynamic QRs, 100 Form Responses |
+| Starter | $3.99 | $39.99 | 1K Short URLs, 500 QRs/month, 1K Form Responses |
+| Professional | $9.99 | $99.99 | 5K Short URLs, 2.5K QRs/month, 5K Responses + API |
+| Business | $29.99 | $299.99 | 25K Short URLs, 10K QRs/month, Team (15 users) |
+| Premium | $49.99 | $499.99 | 100K Short URLs, 50K QRs/month, Team (50 users) |
+| Enterprise | $99.99 | $999.99 | Unlimited everything + White-glove support |
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Vanilla HTML/CSS/JavaScript
+- **Backend:** AWS API Gateway + Lambda + DynamoDB
+- **Auth:** Google OAuth 2.0
+- **Payments:** Stripe Checkout
+- **CDN:** CloudFront
+- **Storage:** S3
+
+## 🔒 Security
+
+**NEVER commit these files:**
+- ❌ `config.js` (contains API keys)
+- ❌ `.env` files
+- ❌ AWS credentials
+- ❌ OAuth client secrets
+
+**Safe to commit:**
+- ✅ `index.html`
+- ✅ `config.template.js`
+- ✅ CSS/JS assets
+- ✅ Documentation
+
+## 📝 Deployment
+
+### Deploy to Production
+
+```bash
+# Switch to production branch
+git checkout production
+
+# Merge from main (after testing)
+git merge main
+
+# Deploy to S3
+aws s3 cp index.html s3://snapiturl.com/index.html --content-type "text/html"
+aws s3 cp config.js s3://snapiturl.com/config.js --content-type "application/javascript"
+
+# Invalidate CloudFront cache
+aws cloudfront create-invalidation --distribution-id E3MGEG0LRH9XFQ --paths "/*"
+
+# Tag the release
+git tag -a v1.x.x-production -m "Release description"
+git push origin production --tags
 ```
 
-## 📊 Analytics & Tracking
+## 🌐 Related Projects
 
-- **Click Analytics**: Track every interaction
-- **Geographic Data**: See where your clicks come from
-- **Device Insights**: Desktop vs mobile breakdown
-- **Time-based Analytics**: Peak usage patterns
-- **Campaign Optimization**: A/B test your links
+- **SnapIT QR:** https://github.com/terrellflautt/snapitqr
+- **Shared Infrastructure:** Unified Google OAuth + Stripe subscriptions
 
-## 💡 Use Cases
+## 📄 License
 
-### Marketing Campaigns
-- Track campaign performance across channels
-- Optimize marketing spend with detailed analytics
-- Brand your links for professional appearance
+Proprietary - All rights reserved
 
-### Business Communications
-- Shorten long URLs for emails and documents
-- Track engagement with business communications
-- Generate QR codes for offline marketing
+## 🤝 Support
 
-### Social Media
-- Clean, professional links for social posts
-- Track social media traffic and engagement
-- Cross-platform campaign tracking
-
-## 🛡️ Security & Privacy
-
-- **HTTPS Everywhere**: All links secured with SSL
-- **Privacy Focused**: Minimal data collection
-- **GDPR Compliant**: Respect user privacy rights
-- **Secure Authentication**: Google OAuth integration
-
-## 📈 Pricing
-
-### Free Tier
-- 3 short URLs per month
-- 1 dynamic QR code
-- Basic click tracking
-- Standard support
-
-### Premium Plans
-- Unlimited short URLs
-- Advanced analytics
-- Custom branding
-- Priority support
-- API access
-
-## 🔧 Technical Stack
-
-- **Frontend**: Modern HTML5, CSS3, JavaScript
-- **Backend**: AWS Lambda, API Gateway
-- **Database**: DynamoDB for scalability
-- **Analytics**: Real-time tracking system
-- **Security**: Industry-standard encryption
-
-## 📞 Support
-
-- **Feedback**: Use the feedback button on any page
-- **Documentation**: Comprehensive guides available
-- **Status**: Monitor system status at /status
-- **Community**: Join our user community
-
----
-
-**Ready to get started?** Visit [snapiturl.com](https://snapiturl.com) and start shortening URLs professionally!
-
-*Part of the SnapIT Software ecosystem - Professional tools for modern businesses.*
+For issues or questions: snapitsaas@gmail.com
