@@ -1582,82 +1582,6 @@
         </div>
     </footer>
 
-    <!-- Contact Form Modal -->
-    <div id="contactModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; opacity: 0; transition: opacity 0.3s ease;">
-        <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: white; border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 style="margin: 0; font-size: 1.5rem; color: var(--gray-800);">Contact Us</h2>
-                <button onclick="closeContactModal()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--gray-400); line-height: 1; padding: 0; width: 32px; height: 32px;">&times;</button>
-            </div>
-
-            <form id="contactForm" onsubmit="submitContactForm(event)" style="display: flex; flex-direction: column; gap: 1rem;">
-                <input type="hidden" name="access_key" value="941dde05-6699-4793-b170-fb81b1659e32">
-                <input type="hidden" name="subject" value="SnapIT URL Contact Form Submission">
-                <input type="hidden" name="from_name" value="SnapIT URL Contact">
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Name</label>
-                    <input type="text" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'">
-                </div>
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Email</label>
-                    <input type="email" name="email" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'">
-                </div>
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Message</label>
-                    <textarea name="message" required rows="5" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; resize: vertical; font-family: inherit; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'"></textarea>
-                </div>
-
-                <button type="submit" id="contactSubmitBtn" style="width: 100%; padding: 0.875rem; background: var(--primary-solid); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 102, 241, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    Send Message
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Feedback Form Modal -->
-    <div id="feedbackModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; opacity: 0; transition: opacity 0.3s ease;">
-        <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: white; border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 style="margin: 0; font-size: 1.5rem; color: var(--gray-800);">Send Feedback</h2>
-                <button onclick="closeFeedbackModal()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--gray-400); line-height: 1; padding: 0; width: 32px; height: 32px;">&times;</button>
-            </div>
-
-            <form id="feedbackForm" onsubmit="submitFeedbackForm(event)" style="display: flex; flex-direction: column; gap: 1rem;">
-                <input type="hidden" name="access_key" value="941dde05-6699-4793-b170-fb81b1659e32">
-                <input type="hidden" name="subject" value="SnapIT URL Feedback Submission">
-                <input type="hidden" name="from_name" value="SnapIT URL Feedback">
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Your Email (optional)</label>
-                    <input type="email" name="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'" placeholder="Leave blank to stay anonymous">
-                </div>
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Feedback Type</label>
-                    <select name="feedback_type" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; background: white;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'">
-                        <option value="bug">Bug Report</option>
-                        <option value="feature">Feature Request</option>
-                        <option value="improvement">Improvement Suggestion</option>
-                        <option value="compliment">Compliment</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--gray-700);">Your Feedback</label>
-                    <textarea name="feedback" required rows="5" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 1rem; resize: vertical; font-family: inherit; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-solid)'" onblur="this.style.borderColor='var(--gray-300)'" placeholder="Tell us what you think..."></textarea>
-                </div>
-
-                <button type="submit" id="feedbackSubmitBtn" style="width: 100%; padding: 0.875rem; background: var(--primary-solid); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(99, 102, 241, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    Submit Feedback
-                </button>
-            </form>
-        </div>
-    </div>
-
     <!-- JavaScript -->
     <script>
         // Global variables
@@ -1722,7 +1646,7 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        token: response.credential
+                        googleToken: response.credential
                     })
                 });
 
@@ -2707,6 +2631,35 @@
             }
         }
 
+        // Simple feedback function
+        function submitFeedback() {
+            const feedback = prompt('We value your feedback! Please share your thoughts about SnapIT URL:');
+            if (feedback && feedback.trim()) {
+                // Create a simple form submission using Web3Forms
+                const formData = new FormData();
+                formData.append('access_key', window.SNAPIT_CONFIG?.WEB3FORMS_ACCESS_KEY || '941dde05-6699-4793-b170-fb81b1659e32');
+                formData.append('subject', 'SnapIT URL Feedback');
+                formData.append('message', feedback);
+                formData.append('from_name', 'SnapIT URL User');
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Thank you for your feedback! We appreciate your input.', 'success');
+                    } else {
+                        showToast('Failed to send feedback. Please try again later.', 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Failed to send feedback. Please try again later.', 'error');
+                });
+            }
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2719,159 +2672,6 @@
                     });
                 }
             });
-        });
-
-        // Contact and Feedback Modal Functions
-        function openContactModal() {
-            const modal = document.getElementById('contactModal');
-            modal.style.display = 'block';
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.modal-content').style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 10);
-        }
-
-        function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            modal.style.opacity = '0';
-            modal.querySelector('.modal-content').style.transform = 'translate(-50%, -50%) scale(0.9)';
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.getElementById('contactForm').reset();
-            }, 300);
-        }
-
-        function openFeedbackModal() {
-            const modal = document.getElementById('feedbackModal');
-            modal.style.display = 'block';
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.modal-content').style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 10);
-        }
-
-        function closeFeedbackModal() {
-            const modal = document.getElementById('feedbackModal');
-            modal.style.opacity = '0';
-            modal.querySelector('.modal-content').style.transform = 'translate(-50%, -50%) scale(0.9)';
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.getElementById('feedbackForm').reset();
-            }, 300);
-        }
-
-        // Close modals on outside click
-        document.getElementById('contactModal').addEventListener('click', function(e) {
-            if (e.target === this) closeContactModal();
-        });
-
-        document.getElementById('feedbackModal').addEventListener('click', function(e) {
-            if (e.target === this) closeFeedbackModal();
-        });
-
-        // Intercept contact link clicks
-        document.querySelectorAll('a[href="/contact"], a[href*="contact"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                openContactModal();
-            });
-        });
-
-        // Submit Contact Form
-        async function submitContactForm(e) {
-            e.preventDefault();
-            const btn = document.getElementById('contactSubmitBtn');
-            const originalText = btn.textContent;
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-
-            try {
-                const formData = new FormData(e.target);
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
-                    closeContactModal();
-                } else {
-                    throw new Error(data.message || 'Submission failed');
-                }
-            } catch (error) {
-                console.error('Contact form error:', error);
-                showToast('Failed to send message. Please try again.', 'error');
-            } finally {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }
-        }
-
-        // Submit Feedback Form
-        async function submitFeedbackForm(e) {
-            e.preventDefault();
-            const btn = document.getElementById('feedbackSubmitBtn');
-            const originalText = btn.textContent;
-            btn.textContent = 'Submitting...';
-            btn.disabled = true;
-
-            try {
-                const formData = new FormData(e.target);
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    showToast('Thank you for your feedback!', 'success');
-                    closeFeedbackModal();
-                } else {
-                    throw new Error(data.message || 'Submission failed');
-                }
-            } catch (error) {
-                console.error('Feedback form error:', error);
-                showToast('Failed to submit feedback. Please try again.', 'error');
-            } finally {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }
-        }
-
-        // Add global feedback button (floating button in corner)
-        window.addEventListener('load', () => {
-            const feedbackBtn = document.createElement('button');
-            feedbackBtn.innerHTML = '💬';
-            feedbackBtn.title = 'Send Feedback';
-            feedbackBtn.onclick = openFeedbackModal;
-            feedbackBtn.style.cssText = `
-                position: fixed;
-                bottom: 2rem;
-                right: 2rem;
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                background: var(--primary-solid);
-                color: white;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                z-index: 9999;
-                transition: all 0.3s ease;
-            `;
-            feedbackBtn.onmouseover = function() {
-                this.style.transform = 'scale(1.1)';
-                this.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.4)';
-            };
-            feedbackBtn.onmouseout = function() {
-                this.style.transform = 'scale(1)';
-                this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-            };
-            document.body.appendChild(feedbackBtn);
         });
     </script>
 </body>
