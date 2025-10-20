@@ -40,4 +40,4 @@ build/
 *-private.txt
 *-secret.txt
 claude-read-this-*
-claude-do-this.txt
+claude-do-this.txt.claude_code_config.json
